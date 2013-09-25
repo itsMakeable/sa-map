@@ -1,0 +1,157 @@
+@font-face {
+  font-family: 'Gotham Rounded Book';
+  src: url('../fonts/GothamRounded/GothamRounded-BookItalic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GothamRounded/GothamRounded-BookItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/GothamRounded/GothamRounded-BookItalic.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/GothamRounded/GothamRounded-BookItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/GothamRounded/GothamRounded-BookItalic.svg#9ffda8e14c915fd81799e950aa5e5b9e') format('svg'); /* Legacy iOS */
+       
+  font-style:   italic;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Book';
+  src: url('../fonts/GothamRounded/GothamRounded-Book.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GothamRounded/GothamRounded-Book.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/GothamRounded/GothamRounded-Book.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/GothamRounded/GothamRounded-Book.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/GothamRounded/GothamRounded-Book.svg#21661efc977bfcfec5c6c16307c05ceb') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Light';
+  src: url('../fonts/GothamRounded/GothamRounded-LightItalic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GothamRounded/GothamRounded-LightItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/GothamRounded/GothamRounded-LightItalic.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/GothamRounded/GothamRounded-LightItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/GothamRounded/GothamRounded-LightItalic.svg#c627e656480e8103a21baf97ca5ccc75') format('svg'); /* Legacy iOS */
+       
+  font-style:   italic;
+  font-weight:  200;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Light';
+  src: url('../fonts/GothamRounded/GothamRounded-Light.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GothamRounded/GothamRounded-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/GothamRounded/GothamRounded-Light.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/GothamRounded/GothamRounded-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/GothamRounded/GothamRounded-Light.svg#b3bd5af04c0e7cf2188fad8c1f2958f5') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  200;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Medium';
+  src: url('../fonts/GothamRounded/GothamRounded-Medium.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GothamRounded/GothamRounded-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/GothamRounded/GothamRounded-Medium.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/GothamRounded/GothamRounded-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/GothamRounded/GothamRounded-Medium.svg#13af3003001cba3805884d1b06b023c9') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Bold';
+  src: url('../fonts/GothamRounded/GothamRounded-Bold.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GothamRounded/GothamRounded-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/GothamRounded/GothamRounded-Bold.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/GothamRounded/GothamRounded-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/GothamRounded/GothamRounded-Bold.svg#cf294c6136807d0e69a971e863b3cd88') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  700;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Medium';
+  src: url('../fonts/GothamRounded/GothamRounded-MediumItalic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GothamRounded/GothamRounded-MediumItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/GothamRounded/GothamRounded-MediumItalic.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/GothamRounded/GothamRounded-MediumItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/GothamRounded/GothamRounded-MediumItalic.svg#48c6e39d21ea8e07ca5171cab616e804') format('svg'); /* Legacy iOS */
+       
+  font-style:   italic;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Bold';
+  src: url('../fonts/GothamRounded/GothamRounded-BoldItalic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/GothamRounded/GothamRounded-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/GothamRounded/GothamRounded-BoldItalic.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/GothamRounded/GothamRounded-BoldItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/GothamRounded/GothamRounded-BoldItalic.svg#e276be916220be37271d4fd52706a38b') format('svg'); /* Legacy iOS */
+       
+  font-style:   italic;
+  font-weight:  700;
+}
+
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html, body {
+  font-family: 'Gotham Rounded Book', sans-serif;
+  color: #727778;
+}
+
+html, body, #map-canvas {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#map-canvas hr {
+  background-color: transparent;
+  border-bottom: 0px solid transparent;
+  border-top: 1px solid #d3d2d2;
+}
+
+#map-canvas .title,
+#map-canvas .address {
+  padding: 0;
+  margin: 0;
+  font-family: 'Gotham Rounded Bold', serif;
+}
+
+#map-canvas .grades {
+  position: relative;
+  top: -10px;
+  font-family: 'Gotham Rounded Book', serif;
+}
+
+#map-canvas .title,
+#map-canvas .address  {
+  font-weight: bold;
+  font-style: normal;
+}
+
+#map-canvas .address {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0
+}
+
+#map-canvas .title {
+  color: #f9af56;
+  text-transform: uppercase;
+}
+
+.tool-tip-triangle {
+      background: url(../img/tool-tip-triangle.png);
+      height: 9px;
+      width: 17px;
+      position: absolute;
+      bottom: -9px;
+      left: 85px;
+  }
