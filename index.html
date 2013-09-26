@@ -7,16 +7,16 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="js/gMaps-utility.js"></script>
+    <script src='js/jquery.min.js'></script>
+    <script src="js/googleMapsAPI.js"></script>
+    <script src="js/googleMapsAPIUtility.js"></script>
     <script src="js/map.js"></script>
 
   </head>
   <body>
   <form>  
       <select id="locationSelect">     
-          <option value="" selected="selected">Select a School</option>
+          <option class="reset-map" value="40.730564, -73.979699" selected="selected">Select a School</option>
       </select>
   </form>
     <div id="map-canvas"></div>

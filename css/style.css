@@ -100,6 +100,7 @@
 *:after {
   box-sizing: border-box;
 }
+
 html, body {
   font-family: 'Gotham Rounded Book', sans-serif;
   color: #727778;
@@ -124,10 +125,14 @@ html, body, #map-canvas {
   font-family: 'Gotham Rounded Bold', serif;
 }
 
-#map-canvas .grades {
-  position: relative;
-  top: -10px;
+#map-canvas .grades,
+#map-canvas .note {
   font-family: 'Gotham Rounded Book', serif;
+  margin-top: 5px;
+}
+
+#map-canvas .note {
+  font-size: 9px;
 }
 
 #map-canvas .title,
@@ -137,7 +142,7 @@ html, body, #map-canvas {
 }
 
 #map-canvas .address {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   padding: 0
 }
@@ -145,6 +150,10 @@ html, body, #map-canvas {
 #map-canvas .title {
   color: #f9af56;
   text-transform: uppercase;
+}
+
+#map-canvas .note:empty {
+  display: none;
 }
 
 .tool-tip-triangle {

@@ -2,7 +2,12 @@ var map;
 window.markerArr = [];
 window.markers = {};
 
-
+// function load() {
+//   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+//   map.setCenter(...);
+//   map.savePosition();
+//   ...
+// }
 
 function initialize() {
 
@@ -183,42 +188,45 @@ function initialize() {
 
 	var marker, i;
 
-      function createInfowindow() {
-        window.currMarkerIcon = marker.icon;
-        marker.setIcon("../img/select_pin.svg");
-        infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
-        infowindow.open(map, marker);
 
 
-        if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
-          window.currMarker = marker;
-      }
+
 
 
 	for (i = 0; i < locations.length; i++) {
+		
 		marker = new google.maps.Marker({
-			position: new google.maps.LatLng(locations[i].latitude, locations[i].longitude),
+			position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
 			icon: '../img/' + locations[i].level + '_pin.svg',
 			// animation: google.maps.Animation.DROP,
 			__gm_id: (i + 100),
 			map: map,
 		});
 
+		if (locations[i].type == 'pending') {
+			marker.icon = '../img/pending_'+ locations[i].level +'_pin.svg'
+		}
+		
 		markerKey = locations[i].ID.toString();
-		// console.log(markerKey);
-		// window.markers = { markerKey : marker };
 		window.markers[markerKey] = {
 			'marker': marker,
 			'location': locations[i]
 		};
+		function createInfowindow(){
+		    window.currMarkerIcon = marker.icon;
+		    marker.setIcon("../img/select_pin.svg");
+		    infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><div class='grades'>Grades " + location.grades + "</div><div class='grades'>Grades " + location.note + "</div><div class='tool-tip-triangle'></div>");
+		    infowindow.open(map, marker);
 
-		// console.log(marker)
+		    if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
+		      window.currMarker = marker;
+		}
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
-
+			// return createInfowindow()
 			return function() {
 				window.currMarkerIcon = marker.icon;
 				marker.setIcon("../img/select_pin.svg");
-				infowindow.setContent("<span class='title'>" + locations[i].school + "</span><hr><address class='address'>" + locations[i].address + "</address><br><span class='grades'>Grades " + locations[i].grades + "</span><div class='tool-tip-triangle'></div>");
+				infowindow.setContent("<span class='title'>" + locations[i].school + "</span><hr><address class='address'>" + locations[i].address + "</address><div class='grades'>Grades " + locations[i].grades + "</div><div class='note'>"+ locations[i].note + "</div><div class='tool-tip-triangle'></div>");
 				infowindow.open(map, marker);
 
 
@@ -243,7 +251,7 @@ function initialize() {
 
 	$(document).ready(function() {
 		for (i = 0; i < locations.length; i++) {
-			$('#locationSelect').append("<option value='" + locations[i].latitude + "," + locations[i].longitude + "' data-marker='" + locations[i].ID + "'>" + locations[i].school + "</option>")
+			$('#locationSelect').append("<option value='" + locations[i].lat + "," + locations[i].lng + "' data-marker='" + locations[i].ID + "'>" + locations[i].school + "</option>")
 		}
 		// select a marker from dropdown menu
 		$("select#locationSelect").change(function() {
@@ -255,24 +263,19 @@ function initialize() {
 			map.panTo(latLng);
 			map.setZoom(16)
 
-			// console.log($(this).data());
 			var markerId = $("option:selected", this).data('marker');
 			var marker = window.markers[markerId].marker;
 			var location = window.markers[markerId].location
-			// console.log(marker)
 
 			// Make a resubale function
                     window.currMarkerIcon = marker.icon;
                     marker.setIcon("../img/select_pin.svg");
-                    infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
+                    infowindow.setContent("<span class='title'>" + locations[i].school + "</span><hr><address class='address'>" + locations[i].address + "</address><div class='grades'>Grades " + locations[i].grades + "</div><div class='note'>"+ locations[i].note + "</div><div class='tool-tip-triangle'></div>");
                     infowindow.open(map, marker);
 
 
                     if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
-
-                    window.currMarker = marker;
-
-
+	                    window.currMarker = marker;
 
 		});
 	});
