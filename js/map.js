@@ -2,12 +2,11 @@ var map;
 window.markerArr = [];
 window.markers = {};
 
-// function load() {
-//   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-//   map.setCenter(...);
-//   map.savePosition();
-//   ...
-// }
+function load() {
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  map.setCenter(mapCenter);
+  map.savePosition();
+}
 
 function initialize() {
 
