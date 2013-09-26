@@ -125,16 +125,16 @@ function initialize() {
 
 	var mapCenter = new google.maps.LatLng(40.730564, -73.979699);
 
-      $.ajax({
-          url: 'locations.json.php',
-          async: false,
-          dataType: 'json',
-          success: function (data) {
-            // do stuff with data.  
-            locations = data;
-            // console.log(data)
-          }
-      });
+	$.ajax({
+	    url: 'locations.json.php',
+	    async: false,
+	    dataType: 'json',
+	    success: function (data) {
+	      	// do stuff with data.  
+	        locations = data;
+	        // console.log(data)
+	    }
+	});
 
 	// Create a new StyledMapType object, passing it the array of styles,
 	// as well as the name to be displayed on the map type control.
@@ -182,7 +182,7 @@ function initialize() {
 	infowindow.draw = function() {
 		oldDraw.apply(this);
 		$(infowindow.div_).hide();
-		$(infowindow.div_).fadeIn('fast')
+		$(infowindow.div_).fadeIn('fast');
 	}
 
 	var marker, i;
@@ -191,14 +191,14 @@ function initialize() {
 
 		marker = new google.maps.Marker({
 			position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
-			icon: '../img/' + locations[i].level + '_pin.svg',
+			icon: 'img/' + locations[i].level + '_pin.svg',
 			// animation: google.maps.Animation.DROP,
 			__gm_id: (i + 100),
 			map: map,
 		});
 
 		if (locations[i].type == 'pending') {
-			marker.icon = '../img/pending_'+ locations[i].level +'_pin.svg'
+			marker.icon = 'img/pending_'+ locations[i].level +'_pin.svg'
 		}
 
 		markerKey = locations[i].ID.toString();
@@ -209,17 +209,9 @@ function initialize() {
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 
-			return function() {
-				window.currMarkerIcon = marker.icon;
-				marker.setIcon("../img/select_pin.svg");
-				infowindow.setContent("<span class='title'>" + locations[i].school + "</span><hr><address class='address'>" + locations[i].address + "</address><div class='grades'>Grades " + locations[i].grades + "</div><div class='note'>"+ locations[i].note + "</div><div class='tool-tip-triangle'></div>");
-				infowindow.open(map, marker);
-
-
-				if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
-
-				window.currMarker = marker;
-
+			return function() 
+			{ 
+				kylaStyle(marker,locations[i]);
 			}
 
 		})(marker, i));
@@ -228,12 +220,22 @@ function initialize() {
 		});
 	}
 
-
 	//Associate the styled map with the MapTypeId and set it to display.
 	map.mapTypes.set('map_style', styledMap);
 	map.setMapTypeId('map_style');
 
+	// Holly Chips, Kyla style
+	var kylaStyle = function(marker, location){
+		window.currMarkerIcon = marker.icon;
+        marker.setIcon("img/select_pin.svg");
+        infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
+        infowindow.open(map, marker);
 
+
+        if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
+
+        window.currMarker = marker;
+	}
 
 	$(document).ready(function() {
 		for (i = 0; i < locations.length; i++) {
@@ -254,15 +256,7 @@ function initialize() {
 			var location = window.markers[markerId].location
 
 			// Make a resubale function
-                    window.currMarkerIcon = marker.icon;
-                    marker.setIcon("../img/select_pin.svg");
-                    infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
-                    infowindow.open(map, marker);
-
-
-                    if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
-	                    window.currMarker = marker;
-
+			kylaStyle(marker, location);
 		});
 	});
 }
