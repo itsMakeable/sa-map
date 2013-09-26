@@ -188,13 +188,8 @@ function initialize() {
 
 	var marker, i;
 
-
-
-
-
-
 	for (i = 0; i < locations.length; i++) {
-		
+
 		marker = new google.maps.Marker({
 			position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
 			icon: '../img/' + locations[i].level + '_pin.svg',
@@ -206,23 +201,15 @@ function initialize() {
 		if (locations[i].type == 'pending') {
 			marker.icon = '../img/pending_'+ locations[i].level +'_pin.svg'
 		}
-		
+
 		markerKey = locations[i].ID.toString();
 		window.markers[markerKey] = {
 			'marker': marker,
 			'location': locations[i]
 		};
-		function createInfowindow(){
-		    window.currMarkerIcon = marker.icon;
-		    marker.setIcon("../img/select_pin.svg");
-		    infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><div class='grades'>Grades " + location.grades + "</div><div class='grades'>Grades " + location.note + "</div><div class='tool-tip-triangle'></div>");
-		    infowindow.open(map, marker);
 
-		    if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
-		      window.currMarker = marker;
-		}
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
-			// return createInfowindow()
+
 			return function() {
 				window.currMarkerIcon = marker.icon;
 				marker.setIcon("../img/select_pin.svg");
@@ -270,7 +257,7 @@ function initialize() {
 			// Make a resubale function
                     window.currMarkerIcon = marker.icon;
                     marker.setIcon("../img/select_pin.svg");
-                    infowindow.setContent("<span class='title'>" + locations[i].school + "</span><hr><address class='address'>" + locations[i].address + "</address><div class='grades'>Grades " + locations[i].grades + "</div><div class='note'>"+ locations[i].note + "</div><div class='tool-tip-triangle'></div>");
+                    infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
                     infowindow.open(map, marker);
 
 
