@@ -242,7 +242,7 @@ function initialize() {
 			$('#locationSelect').append("<option value='" + locations[i].lat + "," + locations[i].lng + "' data-marker='" + locations[i].ID + "'>" + locations[i].school + "</option>")
 		}
 		// select a marker from dropdown menu
-		/*$("select#locationSelect").change(function() {
+		$("select#locationSelect").change(function() {
 
 			var latLngString = $(this).val();
 			var latLngArray = latLngString.split(",");
@@ -256,8 +256,8 @@ function initialize() {
 			var location = window.markers[markerId].location
 
 			// Make a resubale function
-			// kylaStyle(marker, location);
-		});*/
+			kylaStyle(marker, location);
+		});
 	});
 }
 
