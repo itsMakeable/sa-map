@@ -206,10 +206,11 @@ function initialize() {
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 
 			return function() {
-				kylaStyle(marker, locations[i]);
+				createInfobox(marker, locations[i]);
 			}
 
 		})(marker, i));
+
 		google.maps.event.addListener(map, 'click', function() {
 			infowindow.close();
 		});
@@ -220,17 +221,19 @@ function initialize() {
 	map.setMapTypeId('map_style');
 
 	// Holly Chips, Kyla style
-	var kylaStyle = function(marker, location) {
-			window.currMarkerIcon = marker.icon;
-			marker.setIcon("img/select_pin.svg");
-			infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address + "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
-			infowindow.open(map, marker);
+	var createInfobox = function(marker, location){
 
+		if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
+		window.currMarker = marker;
+		window.currMarkerIcon = marker.icon;
+        marker.setIcon("img/select_pin.svg");
+        infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
+        infowindow.open(map, marker);
+	}
+// >>>>>>> 66dd77ca600845f0aca3cf06b7ac3041249642e9
 
-			if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
-
-			window.currMarker = marker;
-		}
+// 			window.currMarker = marker;
+// 		}
 	$(".reset-map").select(function(mapCenter) {
 		console.log('this')
 			var latLng = mapCenter
@@ -256,7 +259,7 @@ function initialize() {
 			var location = window.markers[markerId].location
 
 			// Make a resubale function
-			kylaStyle(marker, location);
+			createInfobox(marker, location);
 		});
 
 	});
