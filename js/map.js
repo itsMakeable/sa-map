@@ -2,11 +2,7 @@ var map;
 window.markerArr = [];
 window.markers = {};
 
-function load() {
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  map.setCenter(mapCenter);
-  map.savePosition();
-}
+
 
 function initialize() {
 
@@ -126,14 +122,14 @@ function initialize() {
 	var mapCenter = new google.maps.LatLng(40.730564, -73.979699);
 
 	$.ajax({
-	    url: 'locations.json.php',
-	    async: false,
-	    dataType: 'json',
-	    success: function (data) {
-	      	// do stuff with data.  
-	        locations = data;
-	        // console.log(data)
-	    }
+		url: 'locations.json.php',
+		async: false,
+		dataType: 'json',
+		success: function(data) {
+			// do stuff with data.  
+			locations = data;
+			// console.log(data)
+		}
 	});
 
 	// Create a new StyledMapType object, passing it the array of styles,
@@ -177,7 +173,7 @@ function initialize() {
 
 	var infowindow = new InfoBox(boxOptions);
 
-      // A nicer draw of the infowindow
+	// A nicer draw of the infowindow
 	var oldDraw = infowindow.draw;
 	infowindow.draw = function() {
 		oldDraw.apply(this);
@@ -198,7 +194,7 @@ function initialize() {
 		});
 
 		if (locations[i].type == 'pending') {
-			marker.icon = 'img/pending_'+ locations[i].level +'_pin.svg'
+			marker.icon = 'img/pending_' + locations[i].level + '_pin.svg'
 		}
 
 		markerKey = locations[i].ID.toString();
@@ -209,9 +205,8 @@ function initialize() {
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 
-			return function() 
-			{ 
-				kylaStyle(marker,locations[i]);
+			return function() {
+				kylaStyle(marker, locations[i]);
 			}
 
 		})(marker, i));
@@ -225,18 +220,23 @@ function initialize() {
 	map.setMapTypeId('map_style');
 
 	// Holly Chips, Kyla style
-	var kylaStyle = function(marker, location){
-		window.currMarkerIcon = marker.icon;
-        marker.setIcon("img/select_pin.svg");
-        infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
-        infowindow.open(map, marker);
+	var kylaStyle = function(marker, location) {
+			window.currMarkerIcon = marker.icon;
+			marker.setIcon("img/select_pin.svg");
+			infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address + "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
+			infowindow.open(map, marker);
 
 
-        if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
+			if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
 
-        window.currMarker = marker;
-	}
-
+			window.currMarker = marker;
+		}
+	$(".reset-map").select(function(mapCenter) {
+		console.log('this')
+			var latLng = mapCenter
+			map.panTo(latLng);
+			map.setZoom(13)
+	});
 	$(document).ready(function() {
 		for (i = 0; i < locations.length; i++) {
 			$('#locationSelect').append("<option value='" + locations[i].lat + "," + locations[i].lng + "' data-marker='" + locations[i].ID + "'>" + locations[i].school + "</option>")
@@ -258,6 +258,7 @@ function initialize() {
 			// Make a resubale function
 			kylaStyle(marker, location);
 		});
+
 	});
 }
 
