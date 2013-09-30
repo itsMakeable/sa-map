@@ -216,6 +216,7 @@ function initialize() {
 			}
 
 		})(marker, i));
+
 		google.maps.event.addListener(map, 'click', function() {
 			infowindow.close();
 		});
@@ -227,15 +228,13 @@ function initialize() {
 
 	// Holly Chips, Kyla style
 	var kylaStyle = function(marker, location){
+
+		if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
+		window.currMarker = marker;
 		window.currMarkerIcon = marker.icon;
         marker.setIcon("img/select_pin.svg");
         infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
         infowindow.open(map, marker);
-
-
-        if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
-
-        window.currMarker = marker;
 	}
 
 	$(document).ready(function() {
@@ -243,7 +242,7 @@ function initialize() {
 			$('#locationSelect').append("<option value='" + locations[i].lat + "," + locations[i].lng + "' data-marker='" + locations[i].ID + "'>" + locations[i].school + "</option>")
 		}
 		// select a marker from dropdown menu
-		$("select#locationSelect").change(function() {
+		/*$("select#locationSelect").change(function() {
 
 			var latLngString = $(this).val();
 			var latLngArray = latLngString.split(",");
@@ -257,8 +256,8 @@ function initialize() {
 			var location = window.markers[markerId].location
 
 			// Make a resubale function
-			kylaStyle(marker, location);
-		});
+			// kylaStyle(marker, location);
+		});*/
 	});
 }
 
