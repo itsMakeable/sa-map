@@ -2,7 +2,7 @@ var map;
 window.markerArr = [];
 window.markers = {};
 
-
+var mapCenter = new google.maps.LatLng(40.736389, -73.979699);
 
 function initialize() {
 
@@ -119,7 +119,7 @@ function initialize() {
 	}];
 
 
-	var mapCenter = new google.maps.LatLng(40.730564, -73.979699);
+
 
 	$.ajax({
 		url: 'locations.json.php',
@@ -128,7 +128,6 @@ function initialize() {
 		success: function(data) {
 			// do stuff with data.  
 			locations = data;
-			// console.log(data)
 		}
 	});
 
@@ -147,6 +146,7 @@ function initialize() {
 			mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
 		}
 	};
+	// Infowindow styles
 	var boxOptions = {
 		boxStyle: {
 			// background: "url(tool-tip.png)"
@@ -181,6 +181,7 @@ function initialize() {
 		$(infowindow.div_).fadeIn('fast');
 	}
 
+	// Add markers to the map
 	var marker, i;
 
 	for (i = 0; i < locations.length; i++) {
@@ -203,6 +204,7 @@ function initialize() {
 			'location': locations[i]
 		};
 
+		// create infowindow on maker click
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 
 			return function() {
@@ -211,55 +213,58 @@ function initialize() {
 
 		})(marker, i));
 
-		google.maps.event.addListener(map, 'click', function() {
-			infowindow.close();
-		});
+		// Close infowindow on map click
+		google.maps.event.addListener(map, 'click', (function(marker, i) {
+			return function() {
+				if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
+							window.currMarker = marker;
+							window.currMarkerIcon = marker.icon;
+				infowindow.close();
+
+			}
+		})(marker, i));
 	}
 
 	//Associate the styled map with the MapTypeId and set it to display.
 	map.mapTypes.set('map_style', styledMap);
 	map.setMapTypeId('map_style');
 
-	// Holly Chips, Kyla style
-	var createInfobox = function(marker, location){
-
+	// Create the infobox on click or option select
+	var createInfobox = function(marker, location) {
 		if (window.currMarker) window.currMarker.setIcon(window.currMarkerIcon);
-		window.currMarker = marker;
-		window.currMarkerIcon = marker.icon;
-        marker.setIcon("img/select_pin.svg");
-        infowindow.setContent("<span class='title'>" + location.school + "</span><hr><address class='address'>" + location.address+ "</address><br><span class='grades'>Grades " + location.grades + "</span><div class='tool-tip-triangle'></div>");
-        infowindow.open(map, marker);
-	}
-// >>>>>>> 66dd77ca600845f0aca3cf06b7ac3041249642e9
-
-// 			window.currMarker = marker;
-// 		}
-	$(".reset-map").select(function(mapCenter) {
-		console.log('this')
-			var latLng = mapCenter
-			map.panTo(latLng);
-			map.setZoom(13)
-	});
-	$(document).ready(function() {
-		for (i = 0; i < locations.length; i++) {
-			$('#locationSelect').append("<option value='" + locations[i].lat + "," + locations[i].lng + "' data-marker='" + locations[i].ID + "'>" + locations[i].school + "</option>")
+			window.currMarker = marker;
+			window.currMarkerIcon = marker.icon;
+			marker.setIcon("img/select_pin.svg");
+			infowindow.setContent("<div class='title'>" + location.school + "</div><hr><address class='address'>" + location.address + "</address><div class='grades'>Grades " + location.grades + "</div><div class='note'>" + location.note + "</div><div class='tool-tip-triangle'></div>");
+			infowindow.open(map, marker);
 		}
+
+	$(document).ready(function() {
+		$('.reset-map').val(mapCenter['nb'] + ',' + mapCenter['ob'])
+		// Create all the select options
+		for (i = 0; i < locations.length; i++) {
+			$('#locationSelect').append("<option value='" + locations[i].lat + "," + locations[i].lng + "' data-type='school' data-marker='" + locations[i].ID + "'>" + locations[i].school + "</option>")
+		}
+
 		// select a marker from dropdown menu
 		$("select#locationSelect").change(function() {
-
 			var latLngString = $(this).val();
 			var latLngArray = latLngString.split(",");
 
 			var latLng = new google.maps.LatLng(latLngArray[0], latLngArray[1]);
+			var selectType = $("option:selected", this).data('type');
 			map.panTo(latLng);
-			map.setZoom(16)
+			if (selectType == "default") {
+				map.setZoom(13)
+			} else {
+				map.setZoom(16)
 
-			var markerId = $("option:selected", this).data('marker');
-			var marker = window.markers[markerId].marker;
-			var location = window.markers[markerId].location
+				var markerId = $("option:selected", this).data('marker');
+				var marker = window.markers[markerId].marker;
+				var location = window.markers[markerId].location
 
-			// Make a resubale function
-			createInfobox(marker, location);
+				createInfobox(marker, location);
+			}
 		});
 
 	});
