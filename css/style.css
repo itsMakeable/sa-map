@@ -130,7 +130,9 @@ html, body, #map-canvas {
   font-family: 'Gotham Rounded Book', serif;
   margin-top: 5px;
 }
-
+#map-canvas .title {
+  min-height: 13px;
+}
 #map-canvas .note {
   font-size: 9px;
 }

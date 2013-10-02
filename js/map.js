@@ -120,7 +120,7 @@ function initialize() {
 
 
 
-
+	// Get info from Google Docs: http://love.ky.la/JmR6 (as CSV)
 	$.ajax({
 		url: 'locations.json.php',
 		async: false,
