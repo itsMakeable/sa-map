@@ -243,9 +243,7 @@ function initialize() {
 		$('.reset-map').val(mapCenter['nb'] + ',' + mapCenter['ob'])
 		// Create all the select options
 		for (i = 0; i < locations.length; i++) {
-			if (locations[i].type !== 'pending') {
 				$('#locationSelect').append("<option value='" + locations[i].lat + "," + locations[i].lng + "' data-type='school' data-marker='" + locations[i].ID + "'>" + locations[i].school + "</option>")
-			}
 			
 		}
 
